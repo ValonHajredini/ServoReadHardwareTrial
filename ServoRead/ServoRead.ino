@@ -16,14 +16,17 @@ void setup() {
 
 void loop() {
   if(lastValue != ((analogRead(servoAnalogOut) - 12) / 100)) {
-    Serial.println((analogRead(servoAnalogOut) - 12) / 100);
+    printServoStatus();
     storePosition( analogRead(servoAnalogOut));
-    delay(50);
-    
   }
-  
+  delay(50);
 // Serial.println(map(analogRead(servoAnalogOut),servoValue0Deg,servoValue180Deg, 0, 180));
  
+}
+void printServoStatus() {
+  Serial.print((analogRead(servoAnalogOut) - 12) / 100);
+  Serial.print("%");
+  Serial.println("");
 }
 void storePosition(int value) {
   lastValue = (value  - 12) / 100;
